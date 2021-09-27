@@ -1,0 +1,97 @@
+openapi: 3.0.0
+
+info: 
+  title: Student API
+  description: Student Demo API by Munna
+  contact: 
+    name: Munna
+    url: https://mediusware.com
+  version: 1.0.0
+
+servers:
+  - url: https://mediusware.com
+  - url: http
+  
+paths:
+  /student:
+    description: Student Resources
+    get:
+      description: Operation to fetch student
+      parameters:
+        - in: query
+          name: studentname
+          required: true
+          schema:
+            type: string 
+            example: Munna
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    StudentID: 
+                      type: integer
+                      example: 32 
+                    StudentName:
+                      type: string
+                      example: Munna
+                    StudentRemark:
+                      type: string
+                      example: High Grade Student
+                      
+    post:
+      description: Add a new student
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                    StudentID: 
+                      type: integer
+                      example: 32 
+                    StudentName:
+                      type: string
+                      example: Munna
+                    StudentRemark:
+                      type: string
+                      example: High Grade Student
+      responses:
+        201:
+          description: Record successfully added.
+  
+  /student{id}:
+    description: Get Student Based on path parameter
+    get:
+      parameters: 
+       - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        responses:
+          200:
+            description: Success Response with path perameter.
+            content:
+              application/json:
+                schema:
+                   type: array
+                items: 
+                  properties:
+                    StudentID: 
+                      type: integer
+                      example: 32 
+                    StudentName:
+                      type: string
+                      example: Munna
+                    StudentRemark:
+                      type: string
+                      example: High Grade Student
+                      
+                  
+              
+
