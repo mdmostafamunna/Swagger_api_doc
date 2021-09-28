@@ -30,18 +30,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items: 
-                  properties:
-                    StudentID: 
-                      type: integer
-                      example: 32 
-                    StudentName:
-                      type: string
-                      example: Munna
-                    StudentRemark:
-                      type: string
-                      example: High Grade Student
+                $ref: '#/components/schemas/students'
                       
     post:
       description: Add a new student
@@ -68,29 +57,51 @@ paths:
     description: Get Student Based on path parameter
     get:
       parameters: 
-       - in: path
+        - in: path
           name: id
           required: true
           schema:
             type: integer
-        responses:
-          200:
-            description: Success Response with path perameter.
-            content:
-              application/json:
-                schema:
-                   type: array
-                items: 
-                  properties:
-                    StudentID: 
-                      type: integer
-                      example: 32 
-                    StudentName:
-                      type: string
-                      example: Munna
-                    StudentRemark:
-                      type: string
-                      example: High Grade Student
+      responses:
+        200:
+          description: Success Response with path perameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'
+
+                  
+components:
+  schemas:
+    student:
+      type: object
+      properties:
+        StudentID: 
+          type: integer
+          example: 32 
+        StudentName:
+          type: string
+          example: Munna
+        StudentRemark:
+          type: string
+          example: High Grade Student
+          
+          
+    students:
+      type: array
+      items:
+        properties:
+          StudentID: 
+            type: integer
+            example: 32 
+          StudentName:
+            type: string
+            example: Munna
+          StudentRemark:
+            type: string
+            example: High Grade Student
+     
+    
                       
                   
               
