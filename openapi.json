@@ -11,6 +11,10 @@
   },
   "servers": [
     {
+      "description": "Server for Student API",
+      "url": "https://virtserver.swaggerhub.com/mdmostafamunna/Employee/1.0.0"
+    },
+    {
       "url": "https://mediusware.com"
     },
     {
@@ -25,10 +29,10 @@
         "parameters": [
           {
             "in": "query",
-            "name": "studentname",
+            "name": "studentID",
             "required": true,
             "schema": {
-              "type": "string",
+              "type": "integer",
               "example": "Munna"
             }
           }
@@ -104,6 +108,36 @@
           }
         }
       }
+    },
+    "/deleteStudent{id}": {
+      "description": "Delete specific student informaiton",
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the student information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/student"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Can't delete the information"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -118,6 +152,10 @@
           "StudentName": {
             "type": "string",
             "example": "Munna"
+          },
+          "DepartmentName": {
+            "type": "string",
+            "example": "DIU"
           },
           "StudentRemark": {
             "type": "string",
@@ -136,6 +174,10 @@
             "StudentName": {
               "type": "string",
               "example": "Munna"
+            },
+            "DepartmentName": {
+              "type": "string",
+              "example": "DIU"
             },
             "StudentRemark": {
               "type": "string",

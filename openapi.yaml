@@ -9,6 +9,9 @@ info:
   version: 1.0.0
 
 servers:
+  # Added by API Auto Mocking Plugin
+  - description: Server for Student API
+    url: https://virtserver.swaggerhub.com/mdmostafamunna/Employee/1.0.0
   - url: https://mediusware.com
   - url: http
   
@@ -19,10 +22,10 @@ paths:
       description: Operation to fetch student
       parameters:
         - in: query
-          name: studentname
+          name: studentID
           required: true
           schema:
-            type: string 
+            type: integer 
             example: Munna
       responses:
         200:
@@ -69,6 +72,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/student'
+                
+                
+                
+  /deleteStudent{id}:
+    description: Delete specific student informaiton
+    delete:
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Successfully deleted the student information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'
+                
+        404:
+          description: Can't delete the information
+            
 
                   
 components:
@@ -82,6 +108,9 @@ components:
         StudentName:
           type: string
           example: Munna
+        DepartmentName:
+          type: string
+          example: DIU
         StudentRemark:
           type: string
           example: High Grade Student
@@ -97,12 +126,9 @@ components:
           StudentName:
             type: string
             example: Munna
+          DepartmentName:
+            type: string
+            example: DIU
           StudentRemark:
             type: string
             example: High Grade Student
-     
-    
-                      
-                  
-              
-
